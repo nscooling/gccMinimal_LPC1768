@@ -3,19 +3,21 @@
 
 GCC_BIN = 
 PROJECT = HelloWorld
-SOURCES = ./src/main.c ./src/retarget.c ./src/serial.c
-CMSIS_OBJECTS = ./LPC17xx/Source/system_LPC17xx.o ./LPC17xx/Source/GCC/startup_ARMCM3.o
+SOURCES = ./src/main.c ./src/retarget.c ./src/serial.c ./src/ParTest.c ./src/cr_startup_lpc17.c
+#CMSIS_OBJECTS = ./LPC17xx/Source/system_LPC17xx.o ./LPC17xx/Source/GCC/startup_ARMCM3.o
+CMSIS_OBJECTS = ./LPC17xx/Source/system_LPC17xx.o 
 OBJECTS = $(SOURCES:.c=.o) $(CMSIS_OBJECTS)
 #SYS_OBJECTS = ./mbed/LPC1768/GCC_ARM/cmsis_nvic.o ./mbed/LPC1768/GCC_ARM/system_LPC17xx.o ./mbed/LPC1768/GCC_ARM/core_cm3.o ./mbed/LPC1768/GCC_ARM/startup_LPC17xx.o 
 #INCLUDE_PATHS = -I. -I./mbed -I./mbed/LPC1768 -I./mbed/LPC1768/GCC_ARM 
 #LIBRARY_PATHS = -L./mbed/LPC1768/GCC_ARM 
 #LIBRARIES = -lmbed 
 #LINKER_SCRIPT = ./mbed/LPC1768/GCC_ARM/LPC1768.ld
-SYS_OBJECTS = 
-INCLUDE_PATHS = -I. -I./include -I./LPC17xx/Include -I./CMSIS/Include 
+SYS_OBJECTS = ./FreeRTOS_Source/portable/GCC/ARM_CM3/port.o ./FreeRTOS_Source/croutine.o ./FreeRTOS_Source/event_groups.o ./FreeRTOS_Source/list.o ./FreeRTOS_Source/queue.o ./FreeRTOS_Source/tasks.o ./FreeRTOS_Source/timers.o ./FreeRTOS_Source/portable/MemMang/heap_4.o
+INCLUDE_PATHS = -I. -I./include -I./LPC17xx/Include -I./CMSIS/Include -I./FreeRTOS_Source/include -I./FreeRTOS_Source/portable/GCC/ARM_CM3/
 LIBRARY_PATHS = 
 LIBRARIES = 
-LINKER_SCRIPT = ./LPC1768.ld
+#LINKER_SCRIPT = ./LPC1768.ld
+LINKER_SCRIPT = ./rtosdemo_rdb1768_Debug.ld
 
 ############################################################################### 
 AS      = $(GCC_BIN)arm-none-eabi-as
