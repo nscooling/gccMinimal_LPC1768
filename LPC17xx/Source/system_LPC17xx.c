@@ -25,7 +25,7 @@
 
 #include <stdint.h>
 #include "LPC17xx.h"
-extern void retarget_init(); // see retartget.c
+
 
 
 /** @addtogroup LPC17xx_System
@@ -564,7 +564,6 @@ void SystemInit (void)
 #if (FLASH_SETUP == 1)                  /* Flash Accelerator Setup            */
   LPC_SC->FLASHCFG  = (LPC_SC->FLASHCFG & ~0x0000F000) | FLASHCFG_Val;
 #endif
-  retarget_init();
 }
 
 /**

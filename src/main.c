@@ -6,6 +6,7 @@
 #include "LPC17xx.h"
 
 #include <stdio.h> // semi-hosting needs retargeting
+extern void retarget_init(); // see retartget.c
 
 #define LED1  (1<<18)
 #define LED2  (1<<20)
@@ -37,6 +38,7 @@ char name[20];
 int main(void)
 {
   SysTick_Config(SystemCoreClock/10);
+    retarget_init();
    LPC_GPIO1->FIODIR |= LED1|LED2|LED3|LED4; //CMSIS definitions
    LPC_GPIO1->FIOPIN ^= LED1;
    //init_serial0();
